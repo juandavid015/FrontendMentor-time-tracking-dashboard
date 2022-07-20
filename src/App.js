@@ -13,7 +13,6 @@ function App() {
     
     fetch("data.json")
       .then(res => {
-        console.log(res)
         return res.json();
       })
       .then(data =>  {
@@ -48,7 +47,8 @@ function App() {
           <LeftBar />
           <Routes>
             <Route path='/daily' element={<Daily data = {data.daily}/>}/>
-            <Route path='/weekly' element={<Weekly data={data.weekly}/>}/>
+            <Route path={'/weekly'} element={<Weekly data={data.weekly}/>}/>
+            <Route path={'/'} element={<Weekly data={data.weekly}/>}/>
             <Route path='monthly' element={<Monthly data= {data.monthly}/>}/>
           </Routes>
           
