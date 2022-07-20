@@ -42,7 +42,7 @@ function App() {
  
   return (
     <BrowserRouter>
-      <div className="App">
+      <main className="App" role={"main"}>
         <div className='grid-container'>
           <LeftBar />
           <Routes>
@@ -53,7 +53,7 @@ function App() {
           </Routes>
           
         </div>
-      </div>
+      </main>
     </BrowserRouter>
     
   );
