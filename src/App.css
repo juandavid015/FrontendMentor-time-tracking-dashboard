@@ -93,7 +93,6 @@ h2 {
 .card-activity {
   border-radius: 1em;
   height: min-content;
-  cursor: pointer;
 }
 /*Top layouts */
 .card-top-layout {
@@ -136,6 +135,10 @@ h2 {
   border: 0 solid transparent;
   border-radius: 1em;
   line-height: 1.5;
+}
+.card-body:hover {
+  cursor: pointer;
+  background-color: hsl(235, 46%, 35%);;
 }
 .card-body-time > * {
   margin: 0rem 0rem 0em 0rem;
