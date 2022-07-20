@@ -38,7 +38,7 @@ export default function TimeCard (props) {
             <div className="card-body">
                 <div className="card-body-header">
                     <h3 className="title-activity">{props.title}</h3>
-                    <button className="btn-more" onClick={handleMore} role="button" aria-label="More info">
+                    <button className="btn-more" onClick={handleMore} aria-label="More info">
                         <svg width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="#BBC0FF" fillRule="evenodd"/></svg>
                     </button>
                     

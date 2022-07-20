@@ -42,7 +42,7 @@ function App() {
  
   return (
     <BrowserRouter>
-      <main className="App" role={"main"}>
+      <main className="App" >
         <div className='grid-container'>
           <LeftBar />
           <Routes>
