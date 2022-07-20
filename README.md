@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# Frontend Mentor - Time tracking dashboard solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Note: if anyone reads this, please excuse my English. I am learning as I write this.
 
-## Available Scripts
+This is a solution to the [Time tracking dashboard challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/time-tracking-dashboard-UIQ7167Jw). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-In the project directory, you can run:
+## Table of contents
 
-### `npm start`
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Overview
 
-### `npm test`
+### The challenge
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users should be able to:
 
-### `npm run build`
+- View the optimal layout for the site depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Switch between viewing Daily, Weekly, and Monthly stats
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Screenshot
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](./src/design/Desktop%20result.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Links
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## My process
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Built with
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- HTML
+- CSS, grid, flexbox
+- Javascript, fetch.
+- [React](https://reactjs.org/) - JS library
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### What I learned
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This work end up a bit messy, i still have problem with pre-structuring and don't have clearence on how
+compact the layout or the design. CSS.
 
-### Code Splitting
+I started thinking only in the desktop design and didn't preview how it will affect the mobile design because of the sizes. Finally, i tried to correct some points, changing the sizes of all the text parts using "em" as reference. In that manner it change the maining containers and its font size, so big part of the text adjust when get smaller. This allows me correcting some issues, but not all. In the media query i corrected from changing every content an its font sizes, because was a big difference and it wasn't rendering proportionally.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+In the part of "React" or working with components, practicing with this makes me understand a little, the ability to recycle components and how useful it can be with large applications. Essentially, I wrote a lot of code for this, more than I would if I did it with just html and javascript, but I understood more of what I was doing and it makes it easier for me to know what's next just by structuring what the components are going to be and their purpose from the start. Also using the same functions for different parts of the App makes it worth if i want to add more similar components to it or change some functionality. 
 
-### Analyzing the Bundle Size
+```js
+<div className="daily-container timecards-grid">
+        
+            {day.map(activity => {
+                return(
+                <TimeCard 
+                    title = {activity.title}
+                    current = {activity.timeframes.current}
+                    previous = {activity.timeframes.previous}
+                    key = {activity.title}
+                />
+                )
+            })}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+At some point I considered using redux to have a global state and maybe I could extract from the global state only the part I wanted, instead I assigned each part and sent it to each component... I still don't know if it can be done in a better way way without even the redux part. 
 
-### Making a Progressive Web App
+Map for each one doesn't seems pretty good considering the data fetched can be so much bigger.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```js
+<div className="daily-container timecards-grid">
+        
+            ...
+            .then(data =>  {
+        
+        let daily = data.map(time => {
+          return {title: time.title, timeframes: time.timeframes.daily};
+          
+        })
+        let weekly = data.map(time => {
+          return {title: time.title, timeframes: time.timeframes.weekly};
+          
+        })
+        let monthly = data.map(time => {
+          return {title: time.title, timeframes: time.timeframes.monthly};
+          
+        })
+        setData({daily: daily, weekly: weekly, monthly: monthly});
+        return(daily, monthly, weekly)
+      }); 
+      ...
+```
 
-### Advanced Configuration
+React was definitely fun, especially when it let you see more clearly the purpose of each part of the app and its flow.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+### Continued development
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+I will practice more with javascript since it allows me to have more flexibility with some specific things like sending the obtained data and finding better solutions as the case when I mapped the analyzed data three times. Maybe redux is a solution. I'm going to check.
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author
+
+- Frontend Mentor - [juandavid015](https://www.frontendmentor.io/profile/juandavid015)
