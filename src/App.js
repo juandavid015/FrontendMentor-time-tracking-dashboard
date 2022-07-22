@@ -17,25 +17,27 @@ function App() {
       })
       .then(data =>  {
         
-        let daily = data.map(time => {
-          return {title: time.title, timeframes: time.timeframes.daily};
-          
-        })
-        let weekly = data.map(time => {
-          return {title: time.title, timeframes: time.timeframes.weekly};
-          
-        })
-        let monthly = data.map(time => {
-          return {title: time.title, timeframes: time.timeframes.monthly};
-          
-        })
-        setData({daily: daily, weekly: weekly, monthly: monthly});
-        return(daily, monthly, weekly)
+        const timeCollection = {
+          daily: [],
+          weekly: [],
+          monthly: []
+        }
+        data.forEach(( time => {
+          const {title, timeframes } =  time;
+          const {daily, weekly, monthly} = timeframes
+
+          timeCollection.daily.push({title: title, timeframes: daily})
+          timeCollection.weekly.push({title: title, timeframes: weekly})
+          timeCollection.monthly.push({title: title, timeframes: monthly})
+        }))
+        setData(timeCollection);
+        return(timeCollection)
       });
   }
   const [data, setData] = useState([]);
   useEffect(()=>{
      getData();
+
   },[])
   
   

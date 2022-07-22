@@ -14,7 +14,7 @@ This is a solution to the [Time tracking dashboard challenge on Frontend Mentor]
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-
+- [Acknowledgment](#Acknowledgment)
 
 ## Overview
 
@@ -96,6 +96,33 @@ Map for each one doesn't seems pretty good considering the data fetched can be s
       }); 
       ...
 ```
+Update: the solution was on use "forEach" instead of "map" for no create new arrays and iterate three time with the same amount of data... and just modify 3 recipes adding the piece data needed (inside the timeframes add the part of weekly, daily, monthly in its repective recipes). Was used forEach and destructuring for aproach this.
+
+```js
+<div className="daily-container timecards-grid">
+        
+            ...
+            .then(data =>  {
+        
+        const timeCollection = {
+          daily: [],
+          weekly: [],
+          monthly: []
+        }
+        data.forEach( time => {
+          const {title, timeframes } =  time;
+          const {daily, weekly, monthly} = timeframes
+
+          timeCollection.daily.push({title: title, timeframes: daily})
+          timeCollection.weekly.push({title: title, timeframes: weekly})
+          timeCollection.monthly.push({title: title, timeframes: monthly})
+        
+        })})
+        ...
+      
+```
+[Credit](https://www.frontendmentor.io/solutions/responsive-time-tracking-dashboard-using-react-vvqmICpYIt#comment-62d9a2a80eb05a02e8254284)
+
 
 React was definitely fun, especially when it let you see more clearly the purpose of each part of the app and its flow.
 
@@ -108,3 +135,7 @@ I will practice more with javascript since it allows me to have more flexibility
 ## Author
 
 - Frontend Mentor - [juandavid015](https://www.frontendmentor.io/profile/juandavid015)
+
+## Acknowledgment
+
+Thanks to [@elaineleung](https://www.frontendmentor.io/profile/elaineleung) for taking the time and reviewing the issue to get and send the data in a more appropriate way.
